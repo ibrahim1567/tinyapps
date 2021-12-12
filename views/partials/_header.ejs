@@ -10,8 +10,10 @@
         <a class="nav-item nav-link" href="/urls/new">Create New URL</a>
       </div>
     </div>
-    <form action="/login" method="POST"> <input type="text" id="Username" name="Username">
-      <button type="submit"> login</button>
+    <form class="form-inline" action="/urls/login" method="POST">
+      <div style = "position:absolute; right:80px; top:10px">
+        <input class="form-control" type="text" name="username" placeholder="Username">
+        <button type="login" class="btn btn-success" class="border border-black" >Login</button>
     </form>
   </nav>
 </header>
