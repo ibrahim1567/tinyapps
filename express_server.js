@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const PORT = 8080; // default port 8080
+const bcrypt = require('bcryptjs');
 const users = { 
   "userRandomID": {
     id: "userRandomID", 
@@ -127,6 +128,7 @@ app.get("/register", function (req, res) {
   app.post("/register", function (req, res) {
     let email = req.body.email;
     let password = req.body.password;
+    const hashedPassword = bcrypt.hashSync(password, 10);
     if (!email || (email === "" && !password) || password === "") {
       res.status(400).send("email and password can't be blank");
       return;
@@ -148,7 +150,7 @@ app.get("/register", function (req, res) {
       users[id] = {
         id: id,
         email: email,
-        password: password,
+        password: hashedPassword,
       };
   
       res.cookie("user_id", id);
